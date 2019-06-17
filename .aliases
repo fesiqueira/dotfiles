@@ -1,0 +1,9 @@
+alias zz="xclip -sel clip"
+alias rr="ranger"
+
+alias dnfin="sudo dnf install"
+alias dnfrm="sudo dnf remove"
+alias dnfpv="sudo dnf provides"
+alias dnffd="sudo dnf search"
+
+alias bat="BAT_PAGER= bat"
