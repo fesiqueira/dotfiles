@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/fpinheiro/work/go/goomer-operations-server'
+let g:netrw_dirhist_2='/home/fpinheiro/floobits/lucaslollobrigida/golang-api-starter'
+let g:netrw_dirhist_3='/home/fpinheiro/work/go/go-toolbox/middlewares'
+let g:netrw_dirhist_4='/home/fpinheiro/work/go/go-toolbox/.git'
+let g:netrw_dirhist_5='/home/fpinheiro/work/go/integration-provider/interfaces'
+let g:netrw_dirhist_6='/home/fpinheiro/.config/nvim/modules/plugins'
+let g:netrw_dirhist_7='/home/fpinheiro/.config/nvim/modules'
