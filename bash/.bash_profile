@@ -6,4 +6,6 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs
-
+function gdoc() {
+	go doc $@ | bat -l go
+}

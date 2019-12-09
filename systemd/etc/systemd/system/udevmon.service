@@ -1,0 +1,10 @@
+[Unit]
+Description=monitor input devices for launching tasks
+
+[Service]
+Type=exec
+ExecStart=/usr/local/bin/udevmon -c /etc/udevmon.yaml
+Nice=-20
+
+[Install]
+WantedBy=multi-user.target
