@@ -9,3 +9,5 @@ fi
 function gdoc() {
 	go doc $@ | bat -l go
 }
+
+export PATH="$HOME/.cargo/bin:$PATH"
