@@ -1,0 +1,32 @@
+[user]
+	name = Felipe Siqueira Pinheiro
+	email = felipe.pinheiro@goomer.com.br
+
+[url "git@gitlab.com:"]
+	insteadOf = https://gitlab.com
+
+[core]
+	filemode = false
+
+[alias]
+	s = status
+	c = checkout
+	b = branch
+	dc = diff --cached
+	lg = log --pretty=\"%C(Yellow)%h  %C(reset)%ad (%C(Green)%cr%C(reset)) %C(Cyan)%an: %C(reset)%s\" --date=short
+	follow = log --stat --follow -p --
+	d = diff
+	aliases = config --get-regexp alias
+
+[color]
+	ui = true
+
+[color "branch"]
+	current = green
+	local = blue
+	remote = yellow
+
+[color "status"]
+	added = green
+	changed = blue
+	untracked = red
