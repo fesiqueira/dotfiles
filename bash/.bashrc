@@ -20,10 +20,3 @@ fi
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
-GOPATH="$HOME/work/go/gopath"
-PATH="$GOPATH/bin:$PATH"
-export GOPATH
-export PATH
-
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash

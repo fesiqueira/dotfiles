@@ -10,4 +10,7 @@ function gdoc() {
 	go doc $@ | bat -l go
 }
 
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
 export PATH="$HOME/.cargo/bin:$PATH"
