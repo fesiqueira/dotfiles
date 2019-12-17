@@ -10,9 +10,9 @@ function gdoc() {
 	go doc $@ | bat -l go
 }
 
-export PATH="$PATH:$(go env GOPATH)/bin"
 
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$PATH:$(go env GOPATH)/bin"
