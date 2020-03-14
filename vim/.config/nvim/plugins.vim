@@ -5,6 +5,8 @@ Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
+Plug 'diepm/vim-rest-console'
+Plug 'jiangmiao/auto-pairs'
 
 " Go"
 Plug 'fatih/vim-go'

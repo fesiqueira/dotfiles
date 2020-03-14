@@ -17,7 +17,5 @@ nnoremap <leader>t :tabnew<CR>
 nnoremap <Tab> :tabnext<CR>
 nnoremap <S-Tab> :tabprevious<CR>
 
-inoremap (, ()<C-c>i
-inoremap {, {<CR>}<C-c>O
-inoremap ", ""<C-c>i
-inoremap ', ''<C-c>i
+"This unsets the "last search pattern" register by hitting return
+nnoremap <CR> :noh<CR><CR>
