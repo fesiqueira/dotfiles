@@ -52,6 +52,6 @@
 ;;
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
-(setq scroll-margin 10
+(setq scroll-margin 15
       scroll-step 1
       scroll-preserve-screen-position 1)
