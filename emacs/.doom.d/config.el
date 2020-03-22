@@ -55,3 +55,5 @@
 (setq scroll-margin 15
       scroll-step 1
       scroll-preserve-screen-position 1)
+
+(global-prettify-symbols-mode 1)
