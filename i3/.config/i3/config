@@ -186,5 +186,5 @@ exec --no-startup-id feh --bg-fill ~/Pictures/wallpaper.png
 # finds out, if available)
 bar {
 	position top
-        status_command bumblebee-status -m spotify cpu memory pasink pasource time -p time.format="%d/%m/%Y %l:%M:%S %p" -t gruvbox-powerline
+        status_command bumblebee-status -m spotify cpu memory network_traffic pasink pasource time -p time.format="%d/%m/%Y %l:%M:%S %p" -t gruvbox-powerline
 }
