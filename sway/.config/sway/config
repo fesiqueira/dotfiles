@@ -33,8 +33,8 @@ output * bg /home/fpinheiro/Pictures/wallpaper.png fill
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
-output eDP-1 resolution 1366x768 position 0,0
-output HDMI-A-1 resolution 2560x1080 position 1366,0
+output eDP-1 resolution 1366x768 position 2560,0
+output HDMI-A-1 resolution 2560x1080 position 0,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -248,7 +248,7 @@ font pango: Liga Meslo 8
     # status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
     # status_command /home/fpinheiro/work/python/bumblebee-status/bumblebee-status -m pomodoro -t gruvbox-powerline -d
 
-    status_command /usr/bin/bumblebee-status -m spotify cpu memory pasink pasource brightness battery bluetooth time -p time.format="%d/%m/%Y %l:%M:%S %p" -t gruvbox-powerline
+    status_command /usr/bin/bumblebee-status -m spotify cpu memory network_traffic pasink pasource brightness battery bluetooth time -p time.format="%d/%m/%Y %l:%M:%S %p" -t gruvbox-powerline
 
     colors {
         statusline #ffffff

@@ -52,8 +52,8 @@
 ;;
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
+
+;; scrolls
 (setq scroll-margin 15
       scroll-step 1
       scroll-preserve-screen-position 1)
-
-(global-prettify-symbols-mode 1)
