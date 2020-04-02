@@ -1,3 +1,4 @@
+set background=light
 set termguicolors
 set t_Co=256
 set encoding=UTF-8
