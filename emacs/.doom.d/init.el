@@ -1,6 +1,7 @@
+
 ;;; init.el -*- lexical-binding: t; -*-
 
-;; This file controls what Doom modules are enabled and what order they load in.
+
 ;; Remember to run 'doom sync' after modifying it!
 
 ;; NOTE Press 'SPC h d h' (or 'C-h d h' for non-vim users) to access Doom's
@@ -20,9 +21,9 @@
 
        :completion
        company           ; the ultimate code completion backend
-       (helm +fuzzy)              ; the *other* search engine for love and life
+       ;;(helm +fuzzy)              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       ;;ivy               ; a search engine for love and life
+       (ivy +fuzzy +prescient)               ; a search engine for love and life
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -46,7 +47,7 @@
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
-       ;;zen               ; distraction-free coding or writing
+       zen               ; distraction-free coding or writing
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies
@@ -105,7 +106,7 @@
        ;;agda              ; types of types of types of types...
        ;;assembly          ; assembly for fun or debugging
        ;;cc                ; C/C++/Obj-C madness
-       clojure           ; java with a lisp
+       (clojure +lsp)           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
