@@ -58,3 +58,7 @@
 (setq scroll-margin 15
       scroll-step 1
       scroll-preserve-screen-position 1)
+
+(setq company-idle-delay 0.2
+      company-minimum-prefix-length 2
+      company-require-match nil)
