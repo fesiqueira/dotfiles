@@ -1,3 +1,4 @@
 vim/.config/nvim/autoload/
 vim/.config/nvim/plugged/
 vim/.config/nvim/.netrwhist
+emacs/.doom.d/flycheck_init.elc
