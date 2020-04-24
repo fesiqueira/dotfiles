@@ -1,4 +1,5 @@
 # .bashrc
+set -o vi
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
