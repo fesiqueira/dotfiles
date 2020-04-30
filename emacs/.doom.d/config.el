@@ -63,4 +63,5 @@
       company-minimum-prefix-length 2
       company-require-match nil)
 
-(add-hook 'js2-mode-hook #'format!)
+;; disable (format +onsave) for javascript
+(add-to-list '+format-on-save-enabled-modes 'js2-mode t)
