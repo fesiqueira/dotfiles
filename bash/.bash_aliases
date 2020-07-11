@@ -1,5 +1,5 @@
 alias vim="nvim"
 alias ls="ls --color=auto -ltr"
-alias zz="wl-copy"
-alias xx="wl-paste"
+alias zz="xclip -sel clip"
+alias xx="xclip -o -sel clip"
 # alias bat="BAT_PAGER= bat"
