@@ -68,5 +68,9 @@ let mapleader = " "
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>o :only<CR>
-nnoremap <leader>. :FZF -m<CR>
+nnoremap <leader>. :Files<CR>
+nnoremap <leader>gs :GFiles?<CR>
+nnoremap <leader>f :Rg<CR>
+nnoremap <leader>* :Rg <C-R><C-W><CR>
+nnoremap <leader>b :Buffers<CR>
 nnoremap <CR> :noh<CR><CR>
