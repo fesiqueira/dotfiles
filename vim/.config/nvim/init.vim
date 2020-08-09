@@ -20,7 +20,7 @@ syntax on
 
 " visual
 set background=dark
-colorscheme afterglow
+colorscheme Benokai
 set termguicolors
 set t_Co=256
 let g:airline_theme = 'angr'
@@ -67,7 +67,8 @@ noremap <Space> <Nop>
 let mapleader = " "
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
-nnoremap <leader>o :only<CR>
+nnoremap <leader>o :%bd<BAR>e#<CR>
+nnoremap <leader><TAB> :bnext<CR>
 nnoremap <leader>. :Files<CR>
 nnoremap <leader>gs :GFiles?<CR>
 nnoremap <leader>f :Rg<CR>
