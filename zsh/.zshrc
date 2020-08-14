@@ -87,6 +87,10 @@ export EDITOR=nvim
 #   export EDITOR='mvim'
 # fi
 
+function godoc {
+    go doc $@ | bat -l go
+}
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
