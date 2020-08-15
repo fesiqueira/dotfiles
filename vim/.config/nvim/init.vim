@@ -74,4 +74,6 @@ nnoremap <leader>gs :GFiles?<CR>
 nnoremap <leader>f :Rg<CR>
 nnoremap <leader>* :Rg <C-R><C-W><CR>
 nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>p :Commands<CR>
+nnoremap <leader>rr :source %<CR>
 nnoremap <CR> :noh<CR><CR>
