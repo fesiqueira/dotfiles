@@ -86,6 +86,7 @@ __prompt_command() {
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
+export EDITOR=nvim
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin"
