@@ -4,6 +4,7 @@ call plug#begin()
     Plug 'jiangmiao/auto-pairs'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  | Plug 'junegunn/fzf.vim'
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+    Plug 'sheerun/vim-polyglot'
 
     " quality of life
     Plug 'tpope/vim-commentary'
@@ -21,11 +22,10 @@ syntax on
 
 " visual
 set background=dark
-colorscheme solarized8_dark
+colorscheme gruvbox
 set termguicolors
 set t_Co=256
-" let g:airline_theme = 'angr'
-let g:airline_theme = 'solarized'
+let g:airline_theme = 'angr'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
@@ -69,6 +69,9 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
+au FileType go nmap <leader><ga> <Plug>(go-alternate-edit)
+au FileType go nmap <leader><gt> <Plug>(go-test)
+au FileType go nmap <leader><gd> <Plug>(go-doc)
 
 " bindings
 noremap <Space> <Nop>
