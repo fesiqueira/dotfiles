@@ -70,17 +70,21 @@ __prompt_command() {
     local EXIT="$?"
 
     local RCol='\[\e[m\]'
-    local LRed='\[\e[38;5;210m\]'
-    local LBlue='\[\e[38;5;104m\]'
+    local LRed='\[\e[38;5;161m\]'
+    local LBlue='\[\e[38;5;105m\]'
     local LGreen='\[\e[38;5;113m\]'
     local LYellow='\[\e[38;5;221m\]'
+    local LOrange='\[\e[38;5;209m\]'
     local DGray='\[\e[38;5;240m\]'
 
-    # prompt with user@hostname
-    # PS1="${DGray}\t${RCol} ${LBlue}[\u@\h]${RCol} ${LYellow}\`parse_git_branch\`${RCol}${LGreen}\w${RCol}\n "
-    PS1="${DGray}\t${RCol} ${LGreen}\w${RCol} ${LYellow}\`parse_git_branch\`${RCol}\n "
+    local GIT_STATUS=`parse_git_branch`
 
-    [ $EXIT -ne 0 ] && PS1+="${LRed}\$${RCol} " || PS1+="${LGreen}\$${RCol} "
+    # 24h clock with seconds and path to current directory
+    PS1="${DGray}\t${RCol} ${LRed}\w${RCol} "
+
+    [[ $GIT_STATUS != "" ]] && PS1+="on ${LBlue}${GIT_STATUS}${RCol}"
+
+    [ $EXIT -ne 0 ] && PS1+=" \n ${LOrange}\$${RCol} " || PS1+=" \n ${LGreen}\$${RCol} "
 }
 
 . $HOME/.asdf/asdf.sh
