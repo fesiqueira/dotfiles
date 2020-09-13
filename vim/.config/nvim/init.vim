@@ -40,6 +40,9 @@ set updatetime=300
 set nobackup
 set nowritebackup
 set hidden
+set splitright
+set splitbelow
+set wildmode=list:longest,full
 
 " f-ing indentation
 set expandtab     " turn tabs into spaces
@@ -61,15 +64,18 @@ set shortmess+=c
 autocmd BufWritePre * %s/\s\+$//e " cleanup trailing whitespace
 
 " vim-go
-let g:go_highlight_types = 1
+let g:go_fmt_command = "goimports"
+let g:go_info_mode = "gopls"
+let g:go_auto_type_info = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
+let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
-let g:go_code_completion_enabled = 0
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
 au FileType go nmap <leader><ga> <Plug>(go-alternate-edit)
 au FileType go nmap <leader><gt> <Plug>(go-test)
 au FileType go nmap <leader><gd> <Plug>(go-doc)
@@ -94,7 +100,7 @@ nnoremap <CR> :noh<CR><CR>
 " coc configs
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> gh :call <SID>show_documentation()<CR>
 nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
 
