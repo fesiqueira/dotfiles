@@ -69,6 +69,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
+let g:go_code_completion_enabled = 0
 au FileType go nmap <leader><ga> <Plug>(go-alternate-edit)
 au FileType go nmap <leader><gt> <Plug>(go-test)
 au FileType go nmap <leader><gd> <Plug>(go-doc)
@@ -94,8 +95,8 @@ nnoremap <CR> :noh<CR><CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> [e <Plug>(coc-diagnostic-prev)
+nmap <silent> ]e <Plug>(coc-diagnostic-next)
 
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
