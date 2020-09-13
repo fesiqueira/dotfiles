@@ -22,7 +22,7 @@ syntax on
 
 " visual
 set background=dark
-colorscheme gruvbox
+colorscheme hybrid_material
 set termguicolors
 set t_Co=256
 let g:airline_theme = 'angr'
