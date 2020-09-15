@@ -5,6 +5,7 @@ call plug#begin()
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  | Plug 'junegunn/fzf.vim'
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }
     Plug 'sheerun/vim-polyglot'
+    Plug 'diepm/vim-rest-console'
 
     " quality of life
     Plug 'tpope/vim-commentary'
@@ -103,6 +104,10 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> gh :call <SID>show_documentation()<CR>
 nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
+
+
+" vim-restconsole configs
+let g:vrc_split_request_body = 1
 
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
