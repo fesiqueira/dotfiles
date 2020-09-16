@@ -1,5 +1,4 @@
 alias vim="nvim"
 alias ls="ls --color=auto -ltr"
-alias zz="xclip -sel clip"
-alias xx="xclip -o -sel clip"
-# alias bat="BAT_PAGER= bat"
+alias zz="clip.exe"
+alias bat="batcat"
