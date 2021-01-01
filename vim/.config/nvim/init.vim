@@ -13,6 +13,7 @@ call plug#begin()
     " visual
     Plug 'flazz/vim-colorschemes'
     Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+    Plug 'junegunn/goyo.vim'
 
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
@@ -30,6 +31,11 @@ let g:airline_theme = 'angr'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
+if exists('+termguicolors')
+    let &t_8f = "\<Esc>[38;2;&lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;&lu;%lu;%lum"
+endif
+
 set number
 set relativenumber
 set ruler
@@ -44,6 +50,7 @@ set hidden
 set splitright
 set splitbelow
 set wildmode=list:longest,full
+set colorcolumn=120
 
 " f-ing indentation
 set expandtab     " turn tabs into spaces
@@ -86,9 +93,10 @@ noremap <Space> <Nop>
 let mapleader = " "
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
-nnoremap <leader>o :%bd<BAR>e#<CR>
+nnoremap <leader>o :%bd<BAR>e#<BAR>bd#<CR>\|'"
 nnoremap <leader>c :bd<CR>
-nnoremap <leader><TAB> :bnext<CR>
+nnoremap <leader>l :bnext<CR>
+nnoremap <leader>h :bprevious<CR>
 nnoremap <leader>. :Files<CR>
 nnoremap <leader>gs :GFiles?<CR>
 nnoremap <leader>f :Rg<CR>
