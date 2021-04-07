@@ -1,4 +1,5 @@
 # Edit this configuration file to define what should be installed on
+# 
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
@@ -14,8 +15,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.useOSProber = true;
+  # boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
 
-  # networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixera"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
@@ -25,7 +27,7 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.interfaces.enp0s3.useDHCP = true;
+  networking.interfaces.enp0s31f6.useDHCP = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -41,29 +43,38 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-
+  fonts.fonts = with pkgs; [
+    font-awesome
+    powerline-fonts
+    (nerdfonts.override { fonts = [ "DroidSansMono" ]; })
+  ];
   
-
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
-
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
+  services.printing.drivers = [ pkgs.hplip ];
+  services.avahi.enable = true;
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  hardware = {
+    pulseaudio = {
+      enable = true;
+    };
+    opengl = {
+      enable = true;
+      driSupport = true;
+      extraPackages = with pkgs; [
+        amdvlk
+      ];
+    };
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.fesiqueira = {
     isNormalUser = true;
     home = "/home/fesiqueira";
     description = "Felipe Siqueira Pinheiro";
-    extraGroups = [ "wheel" "video" "sway" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
@@ -73,12 +84,16 @@
     git
     neovim
     firefox
-    teams
-    discord
+    tldr
   ];
 
   environment.shellAliases = {
     vim = "nvim";
+  };
+
+  environment.sessionVariables = {
+    MOZ_ENABLE_WAYLAND = "1";
+    XDG_CURRENT_DESKTOP = "sway";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -88,54 +103,60 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [
-      swaylock
-      swayidle
-      wl-clipboard
-      mako
-      alacritty
-      rofi
-      xwayland
-    ];
+
+  programs = {
+    sway = {
+      enable = true;
+    };
+    tmux = {
+      enable = true;
+      keyMode = "vi";
+      shortcut = "a";
+      escapeTime = 0;
+      extraConfig = ''
+        bind - split-window -v -c '#{pane_current_path}'
+        bind _ split-window -h -c '#{pane_current_path}'
+      '';
+    };
+    bash = {
+      shellInit = ''
+        set -o vi
+      '';
+    };
   };
 
-  programs.tmux = {
-    enable = true;
-    keyMode = "vi";
-    shortcut = "a";
-    escapeTime = 0;
-    extraConfig = "
-    bind - split-window -v -c '#{pane_current_path}'
-    bind _ split-window -h -c '#{pane_current_path}'
-    ";
-  };
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-  services.pipewire.enable = true;
-  services.xserver.enable = true;
-  services.xserver.displayManager = {
-    defaultSession = "sway";
-    gdm = {
+
+  services = {
+    pipewire.enable = true;
+    xserver = {
+      windowManager.i3.enable = true;
       enable = true;
-      wayland = true;
+      videoDrivers = [ "amdgpu" ];
+      displayManager = {
+        defaultSession = "none+i3";
+	gdm = {
+	  enable = true;
+	  wayland = false;
+	};
+      };
     };
-  };
-  xdg.portal = {
-    enable = true;
-    gtkUsePortal = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
-    ];
-  };
-  services.flatpak.enable = true;
-  services.interception-tools = {
-    enable = true;
+
+    interception-tools.enable = true;
+  }; 
+
+  xdg = {
+    icons.enable = true;
+    portal = {
+      enable = true;
+      extraPortals = [
+	pkgs.xdg-desktop-portal-wlr 
+      ];
+    };
   };
 
   nix = {
@@ -161,4 +182,3 @@
   system.stateVersion = "20.09"; # Did you read the comment?
 
 }
-
