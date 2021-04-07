@@ -1,22 +1,22 @@
 [user]
 	name = Felipe Siqueira Pinheiro
-	email = felipe.pinheiro@goomer.com.br
 
 [url "git@gitlab.com:"]
 	insteadOf = https://gitlab.com
 
+# Not sure about what it does
 [core]
 	filemode = false
 
 [alias]
-	s = status
-	c = checkout
-	b = branch
-	dc = diff --cached
-	lg = log --pretty=\"%C(Yellow)%h  %C(reset)%ad (%C(Green)%cr%C(reset)) %C(Cyan)%an: %C(reset)%s\" --date=short
-	follow = log --stat --follow -p --
-	d = diff
 	aliases = config --get-regexp alias
+	b = branch
+	c = checkout
+	dc = diff --cached
+	d = diff
+	follow = log --stat --follow -p --
+	lg = log --pretty=\"%C(Yellow)%h  %C(reset)%ad (%C(Green)%cr%C(reset)) %C(Cyan)%an: %C(reset)%s\" --date=short
+	s = status
 
 [color]
 	ui = true
@@ -30,3 +30,12 @@
 	added = green
 	changed = blue
 	untracked = red
+
+# Context specific configurations
+# My configs
+[includeIf "gitdir:~/"]
+	path = .gitconfig.me
+
+# Work configs
+[includeIf "gitdir:~/fun/fleury/"]
+	path = .gitconfig.fleury
