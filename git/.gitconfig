@@ -39,3 +39,9 @@
 # Work configs
 [includeIf "gitdir:~/fun/fleury/"]
 	path = .gitconfig.fleury
+
+[commit]
+	gpgSign = true
+
+[tag]
+	gpgSign = true
