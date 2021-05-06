@@ -5,23 +5,6 @@
 # this file and re-run i3-config-wizard(1).
 #
 
-### General configuration
-default_border pixel 1
-default_floating_border normal
-hide_edge_borders smart
-
-set $cl_high #525252
-set $cl_indi #d9d8d8
-set $cl_back #231f20
-set $cl_fore #d9d8d8
-set $cl_urge #ee2e24
-
-# Colors                border   bg       text     indi     childborder
-client.focused          $cl_high $cl_high $cl_fore $cl_indi $cl_high
-client.focused_inactive $cl_back $cl_back $cl_fore $cl_back $cl_back
-client.unfocused        $cl_back $cl_back $cl_fore $cl_back $cl_back
-client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
-
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -30,20 +13,20 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango: Liga Meslo 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-# Adjust display
-exec --no-startup-id xrandr --output eDP-1 --mode 1366x768 --rate 60 --output HDMI-1 --mode 2560x1080 --primary --rate 60 --right-of eDP-1
-
-# Set background image
-exec --no-startup-id feh --bg-fill ~/Pictures/treeoflife.png
-
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
+
+# Setup outputs
+exec --no-startup-id xrandr --output HDMI-A-0 --set TearFree on --rate 60 --pos 320x0 --output DisplayPort-2 --set TearFree on --rate 74.99 --pos 0x1080 --primary
+
+# Setup redshift
+exec --no-startup-id redshift-gtk
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -53,32 +36,38 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# Start polybar
+#exec_always --no-startup-id polybar main
 
-# Use playerctl to control players
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause && $refresh_i3status
-bindsym XF86AudioStop exec --no-startup-id playerctl stop && $refresh_i3status
-bindsym XF86AudioNext exec --no-startup-id playerctl next && $refresh_i3status
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous && $refresh_i3status
+# Set wallpapers
+exec_always --no-startup-id nitrogen --restore
+
+# Use pactl to adjust volume in PulseAudio.
+# set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Print using flameshot
+bindsym $mod+Shift+s exec flameshot gui
+
 # start a terminal
-bindsym $mod+Return exec st
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -modi drun -show window -show-icons
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec rofi -modi drun -show-icons -show drun
+bindsym $mod+Tab exec rofi -modi window -show-icons -show window
+# There also is the (new) i3-dmenu-desktop which only displays applications shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
@@ -129,8 +118,24 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
+# scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
 # focus the child container
 #bindsym $mod+d focus child
+
+# Bind workspaces to specific outputs
+workspace 1 output DisplayPort-2
+workspace 2 output DisplayPort-2
+workspace 3 output DisplayPort-2
+workspace 4 output DisplayPort-2
+workspace 5 output DisplayPort-2
+workspace 6 output HDMI-A-0
+workspace 7 output HDMI-A-0
+workspace 8 output HDMI-A-0
+workspace 9 output HDMI-A-0
+workspace 10 output HDMI-A-0
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -206,7 +211,31 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        font pango:Liga Meslo, FontAwesome 8
+        font pango: UbuntuMono Nerd Font Mono 11
+        output DisplayPort-2
         position top
-        status_command bumblebee-status -m cpu memory network_traffic spotify pasink pasource battery time -p time.format="%d/%m/%Y %H:%M:%S" -t solarized-powerline
+        tray_output primary
+        status_command bumblebee-status -m spotify redshift pasink pasource weather time -p time.format="%d/%m/%Y %H:%M:%S" -t gruvbox-powerline
+        colors {
+                statusline #ffffff
+                background #323232
+                inactive_workspace #323232 #323232 #5c5c5c
+                active_workspace #323232 #323232 #5c5c5c
+                focused_workspace #5f676a #5f676a #ffffff
+        }
+}
+
+bar {
+        font pango: UbuntuMono Nerd Font Mono 9
+        output HDMI-A-0
+        position bottom
+        tray_output none
+        status_command bumblebee-status -m cpu memory disk sensors2 time -p time.format="%d/%m/%Y %H:%M:%S" -t gruvbox-powerline
+        colors {
+                statusline #ffffff
+                background #323232
+                inactive_workspace #323232 #323232 #5c5c5c
+                active_workspace #323232 #323232 #5c5c5c
+                focused_workspace #5f676a #5f676a #ffffff
+        }
 }
