@@ -1,3 +1,4 @@
 alias vim="nvim"
-alias ls="ls --color=auto -ltr"
-alias zz="clip.exe"
+alias zz="xclip -sel clipboard"
+alias cd="z"
+alias cdi="zi"
