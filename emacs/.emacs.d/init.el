@@ -23,6 +23,15 @@
 ;; fix indentation
 (setq-default indent-tabs-mode nil)
 
+;; y/n
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; auto-revert, please
+(global-auto-revert-mode t)
+
+;; remove whitespaces
+(add-hook 'before-save-hook 'whitespace-cleanup)
+
 ;; set background opacity
 (set-frame-parameter (selected-frame) 'alpha '(95 . 95))
 ;; pick a font
@@ -140,6 +149,10 @@
 ;; keep .emacs.d clean
 (use-package no-littering)
 
+;; which key?
+(use-package which-key
+  :diminish
+  :config (which-key-mode t))
 
 ;; languages
 (use-package typescript-mode)
@@ -160,15 +173,12 @@
   :defer t
   :init (global-company-mode))
 
-
 ;; TODO: check if the following packages/configs are useful
 ;; - projectile (counsel-projectile?)
 ;; - helpful
 ;; - editorconfig
 ;; - create-lockfile
 ;; - which-key
-;; - lsp
 ;; - general/hydra
-;; - powerline
 ;; - set-fringe-mode
 ;; - all-the-icons
