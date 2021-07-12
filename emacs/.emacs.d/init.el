@@ -82,6 +82,8 @@
   :init (setq smooth-scroll-margin 10)
   :config (smooth-scrolling-mode t))
 
+(use-package powerline
+  :config (powerline-center-evil-theme))
 
 ;; the good stuff
 ;; ensure undo and redo functionality in Emacs < 28
@@ -117,15 +119,18 @@
 
 ;; ivy
 (use-package ivy
+  :diminish
   :init
   (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
   :config (ivy-mode t))
 
 (use-package ivy-rich
+  :diminish
   :after (ivy counsel)
   :config (ivy-rich-mode t))
 
 (use-package counsel
+  :diminish
   :after ivy
   :config (counsel-mode t))
 
@@ -134,6 +139,27 @@
 
 ;; keep .emacs.d clean
 (use-package no-littering)
+
+
+;; languages
+(use-package typescript-mode)
+
+(use-package go-mode)
+
+(use-package lsp-mode
+  :hook ((typescript-mode go-mode). lsp))
+
+(use-package lsp-ui
+  :hook (lsp-mode . lsp-ui-mode))
+
+(use-package flycheck
+  :hook (lsp-mode . flycheck-mode))
+
+(use-package company
+  :diminish
+  :defer t
+  :init (global-company-mode))
+
 
 ;; TODO: check if the following packages/configs are useful
 ;; - projectile (counsel-projectile?)
