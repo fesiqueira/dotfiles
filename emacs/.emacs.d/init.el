@@ -2,6 +2,9 @@
 ;; start in *scratch*
 (setq inhibit-startup-screen t)
 
+;; no *scratch* message
+(setq initial-scratch-message "")
+
 ;; highlight current line
 (global-hl-line-mode t)
 
@@ -162,7 +165,7 @@
 (use-package go-mode)
 
 (use-package lsp-mode
-  :hook ((typescript-mode go-mode). lsp))
+  :hook ((typescript-mode go-mode) . lsp))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode))
